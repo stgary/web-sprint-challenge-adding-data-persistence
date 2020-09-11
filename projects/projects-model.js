@@ -17,6 +17,18 @@ function getProjects() {
     return db('projects');
 }
 
+function getResourceById(id) {
+    return db('resources').where({ id: id });
+}
+
+function getProjectById(id) {
+    return db('projects').where({ id: id });
+}
+
+function getTaskById(id) {
+    return db('tasks').where({ id: id });
+}
+
 function getTask(project_id) {
     return (
         db('tasks')
@@ -33,7 +45,7 @@ function addProject(data) {
             .returning("id")
             .then(ids => {
                 const id = ids[0];
-                return id;
+                return getProjectById(id);
             })
     );
 }
@@ -45,7 +57,7 @@ function addResource(data) {
             .returning("id")
             .then(ids => {
                 const id = ids[0];
-                return id;
+                return getResourceById(id);
             })
     );
 }
@@ -57,7 +69,7 @@ function addTask(data) {
             .returning("id")
             .then(ids => {
                 const id = ids[0];
-                return id;
+                return getTaskById(id);
             })
     );
 }
