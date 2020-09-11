@@ -40,7 +40,7 @@ function addProject(data) {
 
 function addResource(data) {
     return (
-        db('resource')
+        db('resources')
             .insert(data)
             .returning("id")
             .then(ids => {
